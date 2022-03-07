@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:02:00 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/07 16:29:48 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:29:13 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ int	input_is_incomplete(char *ptr)
 				increment = find_closing_quote(input, (char )*input);
 			}
 			else
-				increment = 1;
-			if (!increment)
+				increment = 0;
+			if (increment == -1)
 				return (1);
 			else
-				input += increment;
+				input += increment + 1;
 		}
 		r_trim(ptr);
 		if (get_last(ptr) == '|')
@@ -89,7 +89,7 @@ static	int	find_closing_quote(char *str, char quote)
 
 	next_q = ft_strchr(str + 1, quote);
 	if (next_q == 0)
-		return (0);
+		return (-1);
 	else
-		return (next_q - str + 2);
+		return (next_q - str);
 }

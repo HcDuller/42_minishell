@@ -3,7 +3,7 @@ NAME		=	minishell
 CC			=	gcc
 AR			=	ar -rc
 RM			=	rm -rfd
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 
 SRC_DIR		=	src
