@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:25:10 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/06 19:28:08 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/08 16:18:32 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	execute_cmds(t_shstate *state)
 	int			**pipes;
 	t_dl_list	*cmd_lst;
 
-	if (all_cmds_are_valid(state->cmds))
-	{
+	//if (all_cmds_are_valid(state->cmds))
+	//{
 		pipes = allocate_pipes(state->cmds);
 		set_pipings(state->cmds, pipes);
 		set_ins_outs(state->cmds);
@@ -36,7 +36,7 @@ void	execute_cmds(t_shstate *state)
 		}
 		close_free_pipes(pipes);
 		wait_cmds_to_end(state);
-	}
+	//}
 }
 
 static void	set_pipings(t_dl_list *cmd_lst, int **pipes)
@@ -88,7 +88,7 @@ static void	wait_cmds_to_end(t_shstate	*state)
 				cmd->exit_status = WEXITSTATUS(cmd->exit_status);
 			}
 			else if (WIFSIGNALED(cmd->exit_status))
-					cmd->exit_status |= 128;
+				cmd->exit_status |= 128;
 			state->exit_code = cmd->exit_status;
 			exit_code = ft_itoa(state->exit_code);
 			set_var(state, "?", exit_code);

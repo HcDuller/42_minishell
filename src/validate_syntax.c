@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:22:37 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 15:29:15 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:51:01 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state)
 			write(STDERR_FILENO, cmd->argv[0], ft_strlen(cmd->argv[0]));
 			write(STDERR_FILENO, ": command not found\n", 20);
 			cmd->type = INVALID;
-			cmd->exit_status = errno;
+			cmd->exit_status = 127;
 		}
 	}
 	free_str_vector(paths);

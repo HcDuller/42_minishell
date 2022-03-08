@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:50 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 15:33:54 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:57:23 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	eval_cmds(t_shstate *state)
 			eval_cmd((t_cmd *)cmd_lst->content, state);
 			if (((t_cmd *)cmd_lst->content)->type == INVALID)
 			{
-				set_var(state, "?", "2");
-				cmd_lst = NULL;
+				set_var(state, "?", "2"); //erro de token == 2 , erro command not found, erro 127
+				//cmd_lst = NULL;
 			}
-			else
 			cmd_lst = cmd_lst->next;
 		}
 	}
