@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:26:00 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/07 12:36:46 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 14:09:59 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_shstate
 	char				*input;
 	int					keep_alive;
 	int					exit_code;
-	char				**paths;
 	t_dl_list			*words;
 	t_dl_list			*var_list;
 	t_dl_list			*cmds;
@@ -89,7 +88,7 @@ typedef struct s_variable
 	int		exported;
 }	t_variable;
 
-void		load_paths(t_shstate *state);
+char		**load_paths(t_shstate *state);
 void		input_parser(t_shstate *state);
 void		word_delimiter(t_word **word);
 t_variable	*create_var(const char *key, const char *value);
@@ -126,7 +125,7 @@ void		set_pipe_redirections(t_dl_list *cmd_lst, int **pipes, int *i);
 void		execute_cmd(t_shstate *state, t_dl_list *cmd_lst);
 void		set_cmd_input(t_dl_list *current);
 void		set_cmd_output(t_dl_list *current);
-void		validate_syntax(t_cmd *cmd, char **paths);
+void		validate_syntax(t_cmd	*cmd, t_shstate	*state);
 int			check_file(char	*filename, int print_errors);
 int			check_relative_file(t_cmd *cmd, char **paths);
 void		define_cmd_type(t_cmd *cmd);
@@ -156,4 +155,5 @@ char		get_last(char	*str);
 void		exec_input(t_shstate *state);
 char		*get_input(void);
 int			input_is_incomplete(char *ptr);
+void		free_str_vector(char **vector);
 #endif

@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_paths.c                                       :+:      :+:    :+:   */
+/*   free_str_vector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 13:42:04 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 15:26:19 by hde-camp         ###   ########.fr       */
+/*   Created: 2022/03/08 13:11:18 by hde-camp          #+#    #+#             */
+/*   Updated: 2022/03/08 13:12:37 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	**load_paths(t_shstate *state)
+void	free_str_vector(char **vector)
 {
-	char	**temp_paths;
-	char	**final_paths;
-	int		size;
-	int		i;
+	char	**ptr;
+	int		p_index;
 
-	temp_paths = ft_split(get_var_value(state, "PATH"), ':');
-	size = 0;
-	while (temp_paths[size])
-		size++;
-	final_paths = ft_calloc(size + 1, sizeof(char **));
-	i = 0;
-	while (temp_paths[i])
+	ptr = vector;
+	p_index = 0;
+	while (ptr[p_index])
 	{
-		(final_paths)[i] = ft_strjoin(temp_paths[i], "/");
-		free(temp_paths[i]);
-		i++;
+		free(ptr[p_index]);
+		ptr[p_index] = NULL;
+		p_index++;
 	}
-	free(temp_paths);
-	return (final_paths);
+	free(vector);
+	vector = NULL;
 }

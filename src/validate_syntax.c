@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   validate_syntax.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:22:37 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/05 20:57:29 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/08 15:29:15 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	validate_bin_sintax(t_cmd	*cmd, char	**paths);
+static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state);
 static void	validate_var_sintax(t_cmd	*cmd);
 static void	validate_heredoc(t_cmd	*cmd);
 static void	print_heredoc_error(t_cmd	*cmd);
 
-void	validate_syntax(t_cmd	*cmd, char	**paths)
+void	validate_syntax(t_cmd	*cmd, t_shstate	*state)
 {
 	if (cmd)
 	{
 		if (cmd->type == BIN)
 		{
-			validate_bin_sintax(cmd, paths);
+			validate_bin_sintax(cmd, state);
 		}
 		if (cmd->type == VAR_DECLARATION)
 		{
@@ -58,13 +58,15 @@ static void	validate_var_sintax(t_cmd	*cmd)
 	}
 }
 
-static void	validate_bin_sintax(t_cmd	*cmd, char	**paths)
+static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state)
 {
 	int	file_exists;
+	char	**paths;
 
+	paths = load_paths(state);
 	if (cmd->argv)
 	{
-		if ((char)*cmd->argv[0] == '/')
+		if (ft_strchr(cmd->argv[0], '/'))
 		{
 			file_exists = check_file(cmd->argv[0], 1);
 		}
@@ -76,9 +78,11 @@ static void	validate_bin_sintax(t_cmd	*cmd, char	**paths)
 		{
 			write(STDERR_FILENO, cmd->argv[0], ft_strlen(cmd->argv[0]));
 			write(STDERR_FILENO, ": command not found\n", 20);
-			cmd->type = INVALID_BIN;
+			cmd->type = INVALID;
+			cmd->exit_status = errno;
 		}
 	}
+	free_str_vector(paths);
 }
 
 static void	print_heredoc_error(t_cmd	*cmd)

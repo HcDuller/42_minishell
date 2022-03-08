@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   eval_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:50 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/06 14:58:36 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/08 15:33:54 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void		eval_cmd(t_cmd	*cmd, char	**paths);
+static void		eval_cmd(t_cmd	*cmd, t_shstate	*state);
 static int		eval_first_cmd(t_dl_list	*cmd_list);
 
 void	eval_cmds(t_shstate *state)
@@ -24,7 +24,7 @@ void	eval_cmds(t_shstate *state)
 	{
 		while (cmd_lst)
 		{
-			eval_cmd((t_cmd *)cmd_lst->content, state->paths);
+			eval_cmd((t_cmd *)cmd_lst->content, state);
 			if (((t_cmd *)cmd_lst->content)->type == INVALID)
 			{
 				set_var(state, "?", "2");
@@ -39,12 +39,12 @@ void	eval_cmds(t_shstate *state)
 		"minishell: syntax error near unexpected token `|'\n", 50);
 }
 
-static void	eval_cmd(t_cmd	*cmd, char	**paths)
+static void	eval_cmd(t_cmd	*cmd, t_shstate	*state)
 {
 	if (cmd)
 	{
 		define_cmd_type(cmd);
-		validate_syntax(cmd, paths);
+		validate_syntax(cmd, state);
 	}
 }
 

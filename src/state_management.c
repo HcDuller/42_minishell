@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   state_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:06:01 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/06 19:22:38 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/08 13:31:54 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,14 @@ void	load_state(t_shstate *state)
 	state->input = NULL;
 	state->keep_alive = 1;
 	state->exit_code = 0;
-	state->paths = NULL;
 	state->words = NULL;
 	state->var_list = NULL;
 	state->cmds = NULL;
-	load_paths(state);
 	load_env_vars(state);
-}
-
-void	unload_paths(t_shstate *state)
-{
-	char	**ptr;
-	int		p_index;
-
-	ptr = state->paths;
-	p_index = 0;
-	while (ptr[p_index])
-	{
-		free(ptr[p_index]);
-		ptr[p_index] = NULL;
-		p_index++;
-	}
-	free(state->paths);
-	state->paths = NULL;
 }
 
 void	unload_state(t_shstate *state)
 {
-	unload_paths(state);
 	if (state->input)
 		free(state->input);
 	unset_all_var(state);

@@ -56,7 +56,8 @@ SRC_CODE	=	main.c \
 				heredoc.c \
 				print_word_cmds.c \
 				split_in_two.c \
-				split_cmd_in_two.c 
+				split_cmd_in_two.c \
+				free_str_vector.c
 
 SRC			=	$(addprefix $(SRC_DIR)/,$(SRC_CODE))
 OBJS		=	$(addprefix $(OBJ_DIR)/,$(SRC_CODE:.c=.o))
