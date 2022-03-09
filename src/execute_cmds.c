@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:25:10 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 17:13:21 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:04:52 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ void	execute_cmds(t_shstate *state)
 	execute_heredocs(state);
 	if (cmd_list_should_run(cmd_lst))
 	{
+		while (cmd_lst)
+		{
+			if (((t_cmd *)cmd_lst->content)->type == INVALID_BIN)
+				close_io(cmd_lst->content);
+			cmd_lst = cmd_lst->next;
+		}
+		cmd_lst = state->cmds;
 		while (cmd_lst)
 		{
 			execute_cmd(state, cmd_lst);

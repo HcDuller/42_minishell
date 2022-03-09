@@ -110,6 +110,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME) ./$(L_DIR)/*.a
-	@printf "$(LF)🧹 $(FG_TEXT)Cleaning $(FG_TEXT_PRIMARY)$(NAME)\n"
+	@printf "$(LF)🧹 $(FG_TEXT)Cleaning $(FG_TEXT_PRIMARY)$(NAME)\n$(NO_COLOR)"
 
 re: fclean all
