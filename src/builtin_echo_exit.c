@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo_exit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:28:26 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/07 12:50:20 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:45:23 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void	builtin_exit(t_shstate *state, t_cmd	*cmd)
 	}
 	else if (cmd->argv[1])
 	{
-		write(STDERR_FILENO, "minishell: exit: numeric argument required\n", 43);
+		ft_putstr_fd(RED, STDERR_FILENO);
+		ft_putstr_fd("minishell: exit: numeric \
+argument required", STDERR_FILENO);
+		ft_putstr_fd(RESET, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 		state->exit_code = 2;
 	}
 }

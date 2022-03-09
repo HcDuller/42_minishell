@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:31:40 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 18:34:55 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 20:26:43 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	execute_cmd(t_shstate *state, t_dl_list	*cmd_lst)
 		temp = ft_itoa(cmd->exit_status);
 		set_var(state, "?", temp);
 		free(temp);
-		write(STDERR_FILENO, cmd->err_msg, ft_strlen(cmd->err_msg));
+		ft_putstr_fd(cmd->err_msg, STDERR_FILENO);
 	}
 }
 

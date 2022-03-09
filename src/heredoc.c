@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:55:35 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 15:19:17 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:17:23 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	heredoc(t_cmd	*cmd)
 		check_heredoc(cmd, input, delimiter);
 	else
 	{
-		write(STDERR_FILENO, "\nminishell: warning: here-document", 34);
-		write(STDERR_FILENO, "delimited by end-of-file\n", 25);
+		ft_putstr_fd(RED, STDERR_FILENO);
+		ft_putstr_fd("minishell warning: here-document \
+delimited by end-of-file", STDERR_FILENO);
+		ft_putstr_fd(RESET, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 	}
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
@@ -45,8 +48,11 @@ static void	check_heredoc(t_cmd	*cmd, char *input, char *delimiter)
 		input = readline("> ");
 		if (!input)
 		{
-			write(STDERR_FILENO, "\nminishell: warning: here-document", 34);
-			write(STDERR_FILENO, "delimited by end-of-file\n", 25);
+			ft_putstr_fd(RED, STDERR_FILENO);
+			ft_putstr_fd("minishell warning: here-document \
+delimited by end-of-file", STDERR_FILENO);
+			ft_putstr_fd(RESET, STDERR_FILENO);
+			ft_putstr_fd("\n", STDERR_FILENO);
 			break ;
 		}
 	}

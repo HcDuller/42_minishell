@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:25:10 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 18:51:32 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 20:35:22 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static void	exec_cmd(t_shstate *state)
 	}
 	else
 	{
-		write(STDERR_FILENO, "syntax error near \
-unexpected token `newline'\n", 51);
+		print_error();
 		set_var(state, "?", "2");
 	}
 }

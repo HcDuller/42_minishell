@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:26:00 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 18:43:10 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 20:41:58 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <libft.h>
 # include <errno.h>
 # include <fcntl.h>
+
+# define RESET "\001\033[0m\002"
+# define RED "\001\033[41;1;37m\002"
+# define YELLOW "\001\033[1;33m\002"
 
 enum e_word_type{
 	UNKNOWN = 0,
@@ -160,5 +164,6 @@ void		free_str_vector(char **vector);
 int			cmd_list_should_run(t_dl_list	*cmds);
 void		execute_heredocs(t_shstate *state);
 void		print_welcome_msg(void);
+void		print_error(void);
 
 #endif

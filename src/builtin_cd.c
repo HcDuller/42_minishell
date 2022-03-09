@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:24:20 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/09 18:39:03 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 20:28:57 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ static int	extra_args(t_cmd	*cmd)
 {
 	if (cmd->argv[2])
 	{
-		write(STDERR_FILENO, "\033[31m", 5);
-		write(STDERR_FILENO, "CD: too many arguments\n", 24);
-		write(STDERR_FILENO, "\033[0m", 4);
+		ft_putstr_fd(RED, STDERR_FILENO);
+		ft_putstr_fd("CD: too many arguments", STDERR_FILENO);
+		ft_putstr_fd(RESET, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 		return (1);
 	}
 	return (0);
