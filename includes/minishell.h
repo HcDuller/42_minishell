@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:26:00 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 16:57:25 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:43:10 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ void		set_shell_handlers(void);
 void		set_child_handlers(int cpid);
 void		heredoc(t_cmd	*cmd);
 void		close_io(t_cmd *cmd);
-int			all_cmds_are_valid(t_dl_list *cmds);
 t_cmd		*new_cmd(void);
 void		split_cmd_in_two(t_dl_list	*cmd_list);
 void		validate_file_sintax(t_cmd	*cmd);
@@ -159,4 +158,7 @@ char		*get_input(void);
 int			input_is_incomplete(char *ptr);
 void		free_str_vector(char **vector);
 int			cmd_list_should_run(t_dl_list	*cmds);
+void		execute_heredocs(t_shstate *state);
+void		print_welcome_msg(void);
+
 #endif

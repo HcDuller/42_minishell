@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   state_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:06:01 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 13:31:54 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:20:23 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	load_state(t_shstate *state)
 	state->var_list = NULL;
 	state->cmds = NULL;
 	load_env_vars(state);
+	print_welcome_msg();
 }
 
 void	unload_state(t_shstate *state)

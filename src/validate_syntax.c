@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_syntax.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:22:37 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 16:36:25 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:38:36 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	validate_var_sintax(t_cmd	*cmd)
 
 static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state)
 {
-	int	file_exists;
+	int		file_exists;
 	char	**paths;
 
 	paths = load_paths(state);
@@ -75,9 +75,7 @@ static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state)
 			file_exists = check_relative_file(cmd, paths);
 		if (!file_exists)
 		{
-			//write(STDERR_FILENO, cmd->argv[0], ft_strlen(cmd->argv[0])); //replace this where it should rly be used!
-			//write(STDERR_FILENO, ": command not found\n", 20); 
-			cmd->err_msg = ft_strjoin(cmd->argv[0],": command not found\n");
+			cmd->err_msg = ft_strjoin(cmd->argv[0], ": command not found\n");
 			cmd->type = INVALID_BIN;
 			cmd->exit_status = 127;
 		}
@@ -100,9 +98,6 @@ static void	print_heredoc_error(t_cmd	*cmd)
 		complement = "`<";
 	else if (cmd->r_operator == S_GREATERTHAN)
 		complement = "`>";
-	//write(STDERR_FILENO, base_str, 47);
-	//write(STDERR_FILENO, complement, ft_strlen(complement));
-	//write(STDERR_FILENO, "\n", 1);
 	cmd->err_msg = ft_strjoin(base_str, complement);
 }
 
@@ -115,8 +110,6 @@ static void	validate_heredoc(t_cmd	*cmd)
 		{
 			cmd->err_msg = ft_strdup("minishell: syntax error near \
 unexpected token `newline'\n");
-			//write(STDERR_FILENO, "minishell: syntax error", 23); delete if error is working properly
-			//write(STDERR_FILENO, "near unexpected token `newline'\n", 32); delete if error is working properly
 		}
 		else if (cmd->r_operator)
 			print_heredoc_error(cmd);

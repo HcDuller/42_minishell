@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:59:25 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/05 21:02:52 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 18:32:58 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_input(void)
 	int		input_status;
 
 	ptr = NULL;
-	ptr = readline("Promtp>");
+	ptr = readline("🚀🔥 MINISHELL:>");
 	input_status = input_is_incomplete(ptr);
 	while (input_status)
 	{

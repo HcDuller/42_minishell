@@ -56,7 +56,9 @@ SRC_CODE	=	main.c \
 				print_word_cmds.c \
 				split_in_two.c \
 				split_cmd_in_two.c \
-				free_str_vector.c
+				free_str_vector.c \
+				execute_heredoc.c \
+				welcome_msg.c \
 
 # ============================================================================ #
 #                                   COLOR                                      #

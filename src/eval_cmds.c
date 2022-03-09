@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:50 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 16:56:54 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:39:53 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	eval_cmds(t_shstate *state)
 			eval_cmd((t_cmd *)cmd_lst->content, state);
 			if (((t_cmd *)cmd_lst->content)->type == INVALID)
 			{
-				set_var(state, "?", "2"); //erro de token == 2 , erro command not found, erro 127
+				set_var(state, "?", "2");
 			}
 			cmd_lst = cmd_lst->next;
 		}
@@ -36,13 +36,9 @@ void	eval_cmds(t_shstate *state)
 	{
 		((t_cmd *)cmd_lst->content)->err_msg = ft_strdup(\
 "minishell: syntax error near unexpected token `|'\n");
-		//write(STDERR_FILENO, 
-		//"minishell: syntax error near unexpected token `|'\n", 50);
 		((t_cmd *)cmd_lst->content)->exit_status = 2;
 		set_var(state, "?", "2");
-
 	}
-
 }
 
 static void	eval_cmd(t_cmd	*cmd, t_shstate	*state)

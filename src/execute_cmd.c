@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:31:40 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 18:03:53 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:34:55 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	forked_env(t_cmd *cmd, t_dl_list *cmd_lst, t_shstate *state);
 
 void	execute_cmd(t_shstate *state, t_dl_list	*cmd_lst)
 {
-	char *temp;
+	char	*temp;
 	t_cmd	*cmd;
 
 	cmd = cmd_lst->content;
