@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:17:10 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/07 10:06:42 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:39:19 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_cmd	*new_cmd(void)
 	new = (t_cmd *)ft_calloc(1, sizeof(t_cmd));
 	new->write = STDOUT_FILENO;
 	new->read = STDIN_FILENO;
+	new->err_msg = NULL;
+	new->argv = NULL;
 	return (new);
 }
 

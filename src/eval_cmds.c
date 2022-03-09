@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:50 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 18:29:35 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:56:54 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	eval_cmds(t_shstate *state)
 	}
 	else
 	{
-		write(STDERR_FILENO, \
-		"minishell: syntax error near unexpected token `|'\n", 50);
+		((t_cmd *)cmd_lst->content)->err_msg = ft_strdup(\
+"minishell: syntax error near unexpected token `|'\n");
+		//write(STDERR_FILENO, 
+		//"minishell: syntax error near unexpected token `|'\n", 50);
+		((t_cmd *)cmd_lst->content)->exit_status = 2;
 		set_var(state, "?", "2");
 
 	}

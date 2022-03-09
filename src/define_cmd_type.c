@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_cmd_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:35:46 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/05 20:48:41 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/09 17:20:40 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	define_cmd_type(t_cmd	*cmd)
 {
 	if (cmd)
 	{
-		if (cmd->l_operator == D_LESSTHAN)
+		if (!cmd->argv)
+			cmd->type = UNEXPECTED_TOKEN;
+		else if (cmd->l_operator == D_LESSTHAN)
 			cmd->type = HEREDOC;
 		else if (isvar_atribution(cmd))
 			cmd->type = VAR_DECLARATION;

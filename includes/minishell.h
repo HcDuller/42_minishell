@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:26:00 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 14:09:59 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:57:25 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ enum e_cmd_type{
 	INVALID_BIN = 4,
 	INVALID = 5,
 	VAR_DECLARATION = 6,
-	HEREDOC = 7
+	HEREDOC = 7,
+	UNEXPECTED_TOKEN = 8
 };
 
 typedef struct s_shstate
@@ -70,6 +71,7 @@ typedef struct s_cmd
 	int					read;
 	int					p_id;
 	int					exit_status;
+	char				*err_msg;
 }	t_cmd;
 
 typedef struct s_word
@@ -156,4 +158,5 @@ void		exec_input(t_shstate *state);
 char		*get_input(void);
 int			input_is_incomplete(char *ptr);
 void		free_str_vector(char **vector);
+int			cmd_list_should_run(t_dl_list	*cmds);
 #endif

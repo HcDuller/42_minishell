@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:31:40 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/07 12:45:25 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:08:12 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,30 @@ static void	forked_env(t_cmd *cmd, t_dl_list *cmd_lst, t_shstate *state);
 
 void	execute_cmd(t_shstate *state, t_dl_list	*cmd_lst)
 {
-	if (((t_cmd *)cmd_lst->content)->type == BIN)
+	char *temp;
+	t_cmd	*cmd;
+
+	cmd = cmd_lst->content;
+	if (cmd->type == BIN)
 	{
 		execute_bin_cmd((t_cmd *)cmd_lst->content, \
 		ft_dl_getfirst(cmd_lst), state);
 	}
-	if (((t_cmd *)cmd_lst->content)->type == BUILTIN)
+	else if (cmd->type == BUILTIN)
 	{
 		exec_builtin(state, (t_cmd *)cmd_lst->content);
 	}
-	if (((t_cmd *)cmd_lst->content)->type == VAR_DECLARATION)
+	else if (cmd->type == VAR_DECLARATION)
 	{
-		set_var(state, ((t_cmd *)cmd_lst->content)->argv[0],
-			((t_cmd *)cmd_lst->content)->argv[1]);
+		set_var(state, cmd->argv[0],
+			cmd->argv[1]);
+	}
+	else if (cmd->type == INVALID_BIN)
+	{
+		temp = ft_itoa(cmd->exit_status);
+		set_var(state, "?", temp);
+		free(temp);
+		write(STDERR_FILENO, cmd->err_msg, ft_strlen(cmd->err_msg));
 	}
 }
 

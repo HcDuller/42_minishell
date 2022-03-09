@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:28:43 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 16:06:40 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:29:28 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	set_pipe_redirections(t_dl_list	*cmd_lst, int	**pipes, int	*i)
 	t_cmd	*cmd;
 
 	cmd = cmd_lst->content;
-	if (cmd->type == BIN || cmd->type == BUILTIN || cmd->type == INVALID)
+	if (cmd->type == BIN || cmd->type == BUILTIN || cmd->type == INVALID_BIN)
 	{
 		if (cmd->l_operator == PIPE)
 			cmd->read = pipes[*i - 1][0];

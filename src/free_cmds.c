@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:40:20 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/03 20:13:02 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:35:41 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	free_cmd(void *ptr)
 			}
 			free(cmd->argv);
 		}
+		if (cmd->err_msg)
+			free(cmd->err_msg);
 		free(ptr);
 	}
 }

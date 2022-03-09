@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:55:35 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/06 21:17:53 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:19:17 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	heredoc(t_cmd	*cmd)
 		write(STDERR_FILENO, "\nminishell: warning: here-document", 34);
 		write(STDERR_FILENO, "delimited by end-of-file\n", 25);
 	}
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 }
 
 static void	check_heredoc(t_cmd	*cmd, char *input, char *delimiter)
@@ -36,11 +38,8 @@ static void	check_heredoc(t_cmd	*cmd, char *input, char *delimiter)
 	{
 		if (input)
 		{
-			if (cmd->write != STDOUT_FILENO)
-			{
-				write(cmd->write, input, ft_strlen(input));
-				write(cmd->write, "\n", 1);
-			}
+			write(cmd->write, input, ft_strlen(input));
+			write(cmd->write, "\n", 1);
 			free(input);
 		}
 		input = readline("> ");
