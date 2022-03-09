@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:22:37 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 15:51:01 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:12:47 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,13 @@ static void	validate_bin_sintax(t_cmd	*cmd, t_shstate	*state)
 	paths = load_paths(state);
 	if (cmd->argv)
 	{
+		file_exists = 0;
 		if (ft_strchr(cmd->argv[0], '/'))
 		{
 			file_exists = check_file(cmd->argv[0], 1);
 		}
-		else
-		{
+		else if (paths)
 			file_exists = check_relative_file(cmd, paths);
-		}
 		if (!file_exists)
 		{
 			write(STDERR_FILENO, cmd->argv[0], ft_strlen(cmd->argv[0]));

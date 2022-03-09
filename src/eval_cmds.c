@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:50 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 15:57:23 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:29:35 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ void	eval_cmds(t_shstate *state)
 			if (((t_cmd *)cmd_lst->content)->type == INVALID)
 			{
 				set_var(state, "?", "2"); //erro de token == 2 , erro command not found, erro 127
-				//cmd_lst = NULL;
 			}
 			cmd_lst = cmd_lst->next;
 		}
 	}
 	else
+	{
 		write(STDERR_FILENO, \
 		"minishell: syntax error near unexpected token `|'\n", 50);
+		set_var(state, "?", "2");
+
+	}
+
 }
 
 static void	eval_cmd(t_cmd	*cmd, t_shstate	*state)

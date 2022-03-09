@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:11:18 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/08 13:12:37 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:13:24 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ void	free_str_vector(char **vector)
 
 	ptr = vector;
 	p_index = 0;
-	while (ptr[p_index])
+	if (ptr)
 	{
-		free(ptr[p_index]);
-		ptr[p_index] = NULL;
-		p_index++;
+		while (ptr[p_index])
+		{
+			free(ptr[p_index]);
+			ptr[p_index] = NULL;
+			p_index++;
+		}
+		free(vector);
+		vector = NULL;
 	}
-	free(vector);
-	vector = NULL;
 }
