@@ -1,9 +1,9 @@
 NAME		=	minishell
 
-CC			=	gcc
+CC			=	cc
 AR			=	ar -rc
 RM			=	rm -rfd
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 
 SRC_DIR		=	src
 OBJ_DIR		=	obj
