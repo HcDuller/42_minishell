@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo_exit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:28:26 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/09 20:45:23 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/03/11 15:07:48 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	builtin_exit(t_shstate *state, t_cmd	*cmd)
 {
 	state->exit_code = 0;
 	state->keep_alive = 0;
+	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (is_valid_exit_code(cmd->argv[1]))
 	{
 		state->exit_code = ft_atoi(cmd->argv[1]);

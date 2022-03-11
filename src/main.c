@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:02:00 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/07 17:29:13 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:11:22 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 		}
 		else
 		{
-			printf("\nexit");
+			printf("\nexit\n");
 			state.keep_alive = 0;
 		}
 	}
