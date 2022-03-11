@@ -6,7 +6,7 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:28:43 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/09 15:29:28 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:26:48 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	open_file(t_cmd	*cmd)
 	if (cmd->l_operator == S_GREATERTHAN)
 		new_fd = open(cmd->argv[0], O_WRONLY | O_CREAT | O_TRUNC, 0000644);
 	if (cmd->l_operator == D_GREATERTHAN)
-		new_fd = open(cmd->argv[0], O_APPEND | O_CREAT | O_TRUNC, 0000644);
+		new_fd = open(cmd->argv[0], O_RDWR | O_APPEND | O_CREAT, 0000644);
 	if (new_fd != -1)
 	{
 		cmd->read = new_fd;

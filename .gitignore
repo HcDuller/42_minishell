@@ -3,6 +3,7 @@ obj/**
 minishell
 libs/libft.a
 .vscode/**
+out*
 out1
 out2
 out3

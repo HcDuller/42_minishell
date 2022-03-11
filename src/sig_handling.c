@@ -6,13 +6,14 @@
 /*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 13:12:09 by hde-camp          #+#    #+#             */
-/*   Updated: 2022/03/04 18:46:20 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:53:32 by hde-camp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 static void	shell_handler(int sig, siginfo_t *info, void *ucontext);
+static void	sigquit_child_handler(int signum);
 void		child_handler2(int sig, siginfo_t *info, void *ucontext);
 
 void	set_shell_handlers(void)
@@ -29,6 +30,12 @@ void	set_shell_handlers(void)
 	sigaction(SIGQUIT, &sig_quit, NULL);
 }
 
+static void	sigquit_child_handler(int signum)
+{
+	(void)signum;
+	write(STDERR_FILENO, "Quit (core dumped)\n", 19);
+}
+
 void	set_child_handlers(int cpid)
 {
 	if (cpid == 0)
@@ -39,7 +46,7 @@ void	set_child_handlers(int cpid)
 	else
 	{
 		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
+		signal(SIGQUIT, sigquit_child_handler);
 	}
 }
 
