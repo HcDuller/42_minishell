@@ -3,29 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo_exit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-camp <hde-camp@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:28:26 by snovaes           #+#    #+#             */
-/*   Updated: 2022/03/11 15:07:48 by hde-camp         ###   ########.fr       */
+/*   Updated: 2022/03/14 09:43:29 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	is_valid_exit_code(char	*exit_code)
-{
-	if (exit_code)
-	{
-		while (*exit_code)
-		{
-			if (!ft_isdigit((int) *exit_code))
-				return (0);
-			exit_code++;
-		}
-		return (1);
-	}
-	return (0);
-}
+static int	is_valid_exit_code(char	*exit_code);
 
 void	builtin_exit(t_shstate *state, t_cmd	*cmd)
 {
@@ -95,4 +82,19 @@ void	builtin_echo(t_cmd	*cmd)
 	write(cmd->write, "\n", 1);
 	close_io(cmd);
 	free(final_str);
+}
+
+static int	is_valid_exit_code(char	*exit_code)
+{
+	if (exit_code)
+	{
+		while (*exit_code)
+		{
+			if (!ft_isdigit((int) *exit_code))
+				return (0);
+			exit_code++;
+		}
+		return (1);
+	}
+	return (0);
 }
